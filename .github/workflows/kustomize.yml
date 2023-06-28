@@ -13,12 +13,15 @@ jobs:
   generate:
     runs-on: ubuntu-latest
 
+    permissions:
+      # Give the default GITHUB_TOKEN write permission to commit and push the
+      # added or changed files to the repository.
+      contents: write
+
     steps:
       - name: Checkout source
         id: source
         uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.BOT_ACCESS_TOKEN }}
 
       - name: Generate manifest
         id: kustomize
